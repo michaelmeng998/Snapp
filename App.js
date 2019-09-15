@@ -19,13 +19,23 @@ import * as ImagePicker from "expo-image-picker";
 
 import Home from "./components/Home";
 import Landing from "./components/Landing";
+import AR_Camera from "./components/AR_Camera";
 
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
+import { AR } from "expo";
+
+const Clarifai = require("clarifai");
+
+const clarifai = new Clarifai.App({
+  apiKey: "73505ef373bd4ff5917d92d4aadfe1f9"
+});
+process.nextTick = setImmediate;
 
 const RootStack = createStackNavigator({
   Landing: Landing,
-  Home: Home
+  Home: Home,
+  AR_Camera: AR_Camera
 });
 
 export const Apps = createAppContainer(RootStack);

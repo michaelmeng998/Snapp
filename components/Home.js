@@ -21,6 +21,12 @@ import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import * as Camera from "expo-camera";
 
+const Clarifai = require("clarifai");
+const clarifai = new Clarifai.App({
+  apiKey: "73505ef373bd4ff5917d92d4aadfe1f9"
+});
+process.nextTick = setImmediate;
+
 export default class App extends React.Component {
   state = {
     image: null,
@@ -108,7 +114,7 @@ export default class App extends React.Component {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={this._realTimePhoto}
+                onPress={() => this.props.navigation.navigate("AR_Camera")}
                 style={{ margin: 20 }}
               >
                 <View
@@ -246,7 +252,7 @@ export default class App extends React.Component {
           style={{ paddingVertical: 10, paddingHorizontal: 10 }}
         />
 
-        <Text>Raw JSON:</Text>
+        {/* <Text>Raw JSON:</Text> */}
 
         {googleResponse && (
           <Text
@@ -254,12 +260,54 @@ export default class App extends React.Component {
             onLongPress={this._share}
             style={{ paddingVertical: 10, paddingHorizontal: 10 }}
           >
-            JSON.stringify(googleResponse.responses)}
+            {/* JSON.stringify(googleResponse.responses)} */}
           </Text>
         )}
       </View>
     );
   };
+
+  //CODE FOR AR-CAMERA
+  state = {
+    hasCameraPermission: null,
+    predictions: []
+  };
+  async componentWillMount() {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    this.setState({ hasCamlseraPermission: status === "granted" });
+  }
+  capturePhoto = async () => {
+    if (this.camera) {
+      let photo = await this.camera.takePictureAsync();
+      console.log("captured");
+      return photo.uri;
+    }
+  };
+  resize = async photo => {
+    let manipulatedImage = await ImageManipulator.manipulateAsync(
+      photo,
+      [{ resize: { height: 300, width: 300 } }],
+      { base64: true }
+    );
+    return manipulatedImage.base64;
+  };
+  predict = async photo => {
+    let predictions = await clarifai.models.predict(
+      { id: "hand-gesture" },
+      photo
+    );
+    console.log("predicted");
+    return predictions;
+  };
+  objectDetection = async () => {
+    let photo = await this.capturePhoto();
+    let resized = await this.resize(photo);
+    let predictions = await this.predict(resized);
+    // let predictions = await this.predict(photo);
+    this.setState({ predictions: predictions.outputs[0].data.concepts });
+  };
+
+  //CODE FOR AR-CAMERA
 
   _keyExtractor = (item, index) => item.id;
 
@@ -296,12 +344,18 @@ export default class App extends React.Component {
   };
 
   _realTimePhoto = async () => {
-    let pickerResult = await ImagePicker.launchCameraAsync({
-      allowsEditing: true,
-      aspect: [4, 3]
-    });
+    console.log("inside real time photo...");
 
-    this._handleImagePicked(pickerResult);
+    // () => this.props.navigation.navigate("AR_Camera");
+
+    //old regular camera code
+
+    // let pickerResult = await ImagePicker.launchCameraAsync({
+    //   allowsEditing: true,
+    //   aspect: [4, 3]
+    // });
+
+    // this._handleImagePicked(pickerResult);
   };
 
   _pickImage = async () => {
@@ -369,7 +423,7 @@ export default class App extends React.Component {
         }
       );
       let responseJson = await response.json();
-      console.log(responseJson);
+      // console.log(responseJson);
       this.setState({
         googleResponse: responseJson,
         uploading: false
