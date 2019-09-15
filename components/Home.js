@@ -63,7 +63,7 @@ export default class App extends React.Component {
 
             <View style={styles.helpContainer}>
               <TouchableOpacity
-                onPress={this._realTimePhoto}
+                onPress={() => this.props.navigation.navigate("AR_Camera")}
                 style={{ marginTop: 20, marginBottom: 10 }}
               >
                 <View
@@ -82,7 +82,7 @@ export default class App extends React.Component {
                       fontWeight: "100"
                     }}
                   >
-                    Real Time Photo
+                    AR Photo
                   </Text>
                 </View>
               </TouchableOpacity>
