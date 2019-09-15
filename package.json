@@ -8,8 +8,12 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "clarifai": "^2.9.1",
+    "constants": "0.0.2",
     "expo": "^34.0.1",
     "expo-camera": "^6.0.0",
+    "expo-file-system": "^6.0.2",
+    "expo-image-manipulator": "^6.0.0",
     "expo-image-picker": "^6.0.0",
     "firebase": "^6.6.1",
     "react": "16.8.3",
