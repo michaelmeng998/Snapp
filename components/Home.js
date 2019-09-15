@@ -10,7 +10,8 @@ import {
   Text,
   ScrollView,
   View,
-  ImageBackground
+  ImageBackground,
+  TouchableOpacity
 } from "react-native";
 // import { ImagePicker } from "expo";
 import uuid from "uuid";
@@ -46,18 +47,90 @@ export default class App extends React.Component {
             contentContainerStyle={styles.contentContainer}
           >
             <View style={styles.getStartedContainer}>
-              {image ? null : <Text style={styles.getStartedText}>Snapp</Text>}
+              <View style={styles.logoContainer}>
+                <Image
+                  resizeMode="contain"
+                  style={styles.logo}
+                  source={require("./images/logo.png")}
+                />
+              </View>
             </View>
 
             <View style={styles.helpContainer}>
-              <Button
+              <TouchableOpacity
                 onPress={this._pickImage}
-                title="Pick an image from camera roll"
-              />
+                style={{ margin: 20 }}
+              >
+                <View
+                  style={{
+                    backgroundColor: "#f48729",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: 30,
+                    padding: 10
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "white",
+                      fontSize: 10,
+                      fontWeight: "800"
+                    }}
+                  >
+                    Pick Image from Camera Roll
+                  </Text>
+                </View>
+              </TouchableOpacity>
 
-              <Button onPress={this._takePhoto} title="Take a photo" />
+              <TouchableOpacity
+                onPress={this._takePhoto}
+                style={{ marginTop: 10, marginBottom: 10 }}
+              >
+                <View
+                  style={{
+                    backgroundColor: "#f48729",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: 30,
+                    padding: 10
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "white",
+                      fontSize: 10,
+                      fontWeight: "800"
+                    }}
+                  >
+                    Take Photo
+                  </Text>
+                </View>
+              </TouchableOpacity>
 
-              <Button onPress={this._realTimePhoto} title="Real Time Photo" />
+              <TouchableOpacity
+                onPress={this._realTimePhoto}
+                style={{ margin: 20 }}
+              >
+                <View
+                  style={{
+                    backgroundColor: "#f48729",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: 30,
+                    padding: 10
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "white",
+                      fontSize: 10,
+                      fontWeight: "800"
+                    }}
+                  >
+                    Real Time Photo
+                  </Text>
+                </View>
+              </TouchableOpacity>
 
               {this.state.googleResponse && (
                 <FlatList
@@ -129,11 +202,30 @@ export default class App extends React.Component {
           elevation: 2
         }}
       >
-        <Button
-          style={{ marginBottom: 10 }}
+        <TouchableOpacity
           onPress={() => this.submitToGoogle()}
-          title="Analyze!"
-        />
+          style={{ margin: 20 }}
+        >
+          <View
+            style={{
+              backgroundColor: "black",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 30,
+              padding: 10
+            }}
+          >
+            <Text
+              style={{
+                color: "white",
+                fontSize: 10,
+                fontWeight: "800"
+              }}
+            >
+              Analyze
+            </Text>
+          </View>
+        </TouchableOpacity>
 
         <View
           style={{
@@ -345,5 +437,15 @@ const styles = StyleSheet.create({
   helpContainer: {
     marginTop: 15,
     alignItems: "center"
+  },
+  logoContainer: {
+    width: 150,
+    height: 150,
+    marginBottom: -100
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    marginBottom: -100
   }
 });
