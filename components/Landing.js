@@ -9,30 +9,6 @@ import {
   TouchableOpacity
 } from "react-native";
 
-// export default class Landing extends React.Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text>Snapp Landing Page</Text>
-
-//         <Button
-//           title="Start Now"
-//           onPress={() => this.props.navigation.navigate("Home")}
-//         />
-//       </View>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center"
-//   }
-// });
-
 export default class Landing extends React.Component {
   render() {
     return (
@@ -62,9 +38,9 @@ export default class Landing extends React.Component {
             >
               <Text
                 style={{
-                  color: "white",
+                  color: "black",
                   fontSize: 20,
-                  fontWeight: "800"
+                  fontWeight: "200"
                 }}
               >
                 Snap Now!

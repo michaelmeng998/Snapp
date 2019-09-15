@@ -74,7 +74,7 @@ export default class App extends React.Component {
                     style={{
                       color: "white",
                       fontSize: 10,
-                      fontWeight: "800"
+                      fontWeight: "100"
                     }}
                   >
                     Pick Image from Camera Roll
@@ -99,7 +99,7 @@ export default class App extends React.Component {
                     style={{
                       color: "white",
                       fontSize: 10,
-                      fontWeight: "800"
+                      fontWeight: "100"
                     }}
                   >
                     Take Photo
@@ -124,7 +124,7 @@ export default class App extends React.Component {
                     style={{
                       color: "white",
                       fontSize: 10,
-                      fontWeight: "800"
+                      fontWeight: "100"
                     }}
                   >
                     Real Time Photo
@@ -219,7 +219,7 @@ export default class App extends React.Component {
               style={{
                 color: "white",
                 fontSize: 10,
-                fontWeight: "800"
+                fontWeight: "100"
               }}
             >
               Analyze

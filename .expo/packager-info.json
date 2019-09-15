@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19003,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 41268,
-  "expoServerNgrokUrl": "https://xg-zc6.mmeng.google-vision-rn-demo.exp.direct",
-  "packagerNgrokUrl": "https://packager.xg-zc6.mmeng.google-vision-rn-demo.exp.direct",
-  "ngrokPid": 41282
+  "devToolsPort": 19004,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
