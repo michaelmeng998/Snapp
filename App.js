@@ -18,6 +18,7 @@ import firebase from "./config/firebase";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 
+
 export default class App extends React.Component {
   state = {
     image: null,
