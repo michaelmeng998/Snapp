@@ -22,6 +22,11 @@ import * as ImagePicker from "expo-image-picker";
 import * as Camera from "expo-camera";
 
 export default class App extends React.Component {
+  static navigationOptions = {
+    headerStyle: { backgroundColor: "#ffb88c" },
+    headerTitleStyle: { color: "black" }
+  };
+
   state = {
     image: null,
     uploading: false,
@@ -38,7 +43,7 @@ export default class App extends React.Component {
 
     return (
       <ImageBackground
-        source={require("./images/blurify.png")}
+        source={require("./images/new_background.png")}
         style={{ width: "100%", height: "100%" }}
       >
         <View style={styles.container}>
@@ -51,19 +56,43 @@ export default class App extends React.Component {
                 <Image
                   resizeMode="contain"
                   style={styles.logo}
-                  source={require("./images/logo.png")}
+                  source={require("./images/Masked_logo.png")}
                 />
               </View>
             </View>
 
             <View style={styles.helpContainer}>
               <TouchableOpacity
-                onPress={this._pickImage}
-                style={{ margin: 20 }}
+                onPress={() => this.props.navigation.navigate("AR_Camera")}
+                style={{ marginTop: 20, marginBottom: 10 }}
               >
                 <View
                   style={{
-                    backgroundColor: "#f48729",
+                    backgroundColor: "white",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: 10,
+                    padding: 10
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 10,
+                      fontWeight: "100"
+                    }}
+                  >
+                    AR Photo
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={this._pickImage}
+                style={{ marginBottom: 10 }}
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
                     alignItems: "center",
                     justifyContent: "center",
                     borderRadius: 30,
@@ -72,7 +101,7 @@ export default class App extends React.Component {
                 >
                   <Text
                     style={{
-                      color: "white",
+                      color: "black",
                       fontSize: 10,
                       fontWeight: "100"
                     }}
@@ -84,11 +113,11 @@ export default class App extends React.Component {
 
               <TouchableOpacity
                 onPress={this._takePhoto}
-                style={{ marginTop: 10, marginBottom: 10 }}
+                style={{ marginBottom: 10 }}
               >
                 <View
                   style={{
-                    backgroundColor: "#f48729",
+                    backgroundColor: "white",
                     alignItems: "center",
                     justifyContent: "center",
                     borderRadius: 30,
@@ -97,37 +126,12 @@ export default class App extends React.Component {
                 >
                   <Text
                     style={{
-                      color: "white",
+                      color: "black",
                       fontSize: 10,
                       fontWeight: "100"
                     }}
                   >
                     Take Photo
-                  </Text>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={this._realTimePhoto}
-                style={{ margin: 20 }}
-              >
-                <View
-                  style={{
-                    backgroundColor: "#f48729",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    borderRadius: 30,
-                    padding: 10
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: "white",
-                      fontSize: 10,
-                      fontWeight: "100"
-                    }}
-                  >
-                    Real Time Photo
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -204,7 +208,7 @@ export default class App extends React.Component {
       >
         <TouchableOpacity
           onPress={() => this.submitToGoogle()}
-          style={{ margin: 20 }}
+          style={{ margin: 10 }}
         >
           <View
             style={{
@@ -246,7 +250,7 @@ export default class App extends React.Component {
           style={{ paddingVertical: 10, paddingHorizontal: 10 }}
         />
 
-        <Text>Raw JSON:</Text>
+        {/* <Text>Raw JSON:</Text> */}
 
         {googleResponse && (
           <Text
@@ -254,7 +258,7 @@ export default class App extends React.Component {
             onLongPress={this._share}
             style={{ paddingVertical: 10, paddingHorizontal: 10 }}
           >
-            JSON.stringify(googleResponse.responses)}
+            {/* JSON.stringify(googleResponse.responses)} */}
           </Text>
         )}
       </View>
@@ -441,7 +445,7 @@ const styles = StyleSheet.create({
   logoContainer: {
     width: 150,
     height: 150,
-    marginBottom: -100
+    marginBottom: -30
   },
   logo: {
     width: 150,

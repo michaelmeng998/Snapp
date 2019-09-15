@@ -9,7 +9,8 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  View
+  View,
+  navigationOptions
 } from "react-native";
 import uuid from "uuid";
 import Environment from "./config/environment";
@@ -19,13 +20,17 @@ import * as ImagePicker from "expo-image-picker";
 
 import Home from "./components/Home";
 import Landing from "./components/Landing";
+import AR_Camera from "./components/AR_Camera";
+import test from "./components/test";
 
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 
 const RootStack = createStackNavigator({
   Landing: Landing,
-  Home: Home
+  Home: Home,
+  AR_Camera: AR_Camera,
+  test: test
 });
 
 export const Apps = createAppContainer(RootStack);

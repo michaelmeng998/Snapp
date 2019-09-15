@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19004,
+  "devToolsPort": 19002,
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://xg-zc6.mmeng.snapp.exp.direct",
+  "packagerNgrokUrl": "https://packager.xg-zc6.mmeng.snapp.exp.direct",
+  "ngrokPid": 57289
 }

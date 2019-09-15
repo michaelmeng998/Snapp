@@ -10,17 +10,21 @@ import {
 } from "react-native";
 
 export default class Landing extends React.Component {
+  static navigationOptions = {
+    headerStyle: { backgroundColor: "#ffb88c" },
+    headerTitleStyle: { color: "black" }
+  };
   render() {
     return (
       <ImageBackground
-        source={require("./images/blurify.png")}
+        source={require("./images/new_background.png")}
         style={{ width: "100%", height: "100%" }}
       >
         <View style={styles.loginContainer}>
           <Image
             resizeMode="contain"
             style={styles.logo}
-            source={require("./images/logo.png")}
+            source={require("./images/Masked_logo.png")}
           />
 
           <TouchableOpacity
@@ -32,7 +36,7 @@ export default class Landing extends React.Component {
                 backgroundColor: "#f48729",
                 alignItems: "center",
                 justifyContent: "center",
-                borderRadius: 15,
+                borderRadius: 25,
                 padding: 15
               }}
             >
@@ -79,6 +83,6 @@ const styles = StyleSheet.create({
   logo: {
     width: 300,
     height: 300,
-    marginBottom: -100
+    marginBottom: -10
   }
 });
