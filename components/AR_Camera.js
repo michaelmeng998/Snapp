@@ -42,17 +42,30 @@ export default class App extends React.Component {
   predict = async photo => {
     let predictions = await clarifai.models.predict(
       { id: "hand-gesture" },
-      photo
+      photo,
+      { minValue: 0.7 }
     );
     console.log("predicted");
     return predictions;
   };
   objectDetection = async () => {
+    //need to send screenshot to google from here
     let photo = await this.capturePhoto();
     let resized = await this.resize(photo);
     let predictions = await this.predict(resized);
     // let predictions = await this.predict(photo);
     this.setState({ predictions: predictions.outputs[0].data.concepts });
+    //code for saving screenshot if confidence level is above a certain threshold
+    console.log("Computed confidence levels:...");
+    if (predictions.outputs[0].data.concepts[0].value > 0.85) {
+      console.log("Confidence level is above 0.85 and is: ");
+      console.log(predictions.outputs[0].data.concepts[0].value);
+    }
+  };
+
+  //code to take screenshot
+  takeScreenshot = async () => {
+    console.log("SCREENSHOT WAS TAKEN...");
   };
 
   render() {
@@ -62,6 +75,7 @@ export default class App extends React.Component {
     } else if (hasCameraPermission === false) {
       return <Text>No access to camera</Text>;
     } else {
+      //   this.takeScreenshot();
       return (
         <View style={{ flex: 1 }}>
           <Camera
@@ -92,7 +106,7 @@ export default class App extends React.Component {
                   }))}
                   renderItem={({ item }) => (
                     <Text
-                      style={{ paddingLeft: 15, color: "black", fontSize: 20 }}
+                      style={{ paddingLeft: 15, color: "white", fontSize: 20 }}
                     >
                       {item.key}
                     </Text>
