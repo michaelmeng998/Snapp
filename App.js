@@ -9,7 +9,8 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  View
+  View,
+  navigationOptions
 } from "react-native";
 import uuid from "uuid";
 import Environment from "./config/environment";
